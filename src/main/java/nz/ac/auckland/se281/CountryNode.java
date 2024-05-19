@@ -4,10 +4,12 @@ public class CountryNode {
 
   private String country = null;
   private String taxFee = null;
+  private String continent = null;
 
-  public CountryNode(String country, String taxFee) {
+  public CountryNode(String country, String continent, String taxFee) {
     this.country = country;
     this.taxFee = taxFee;
+    this.continent = continent;
   }
 
   public String getCountry() {
@@ -16,6 +18,10 @@ public class CountryNode {
 
   public String getTaxFee() {
     return taxFee;
+  }
+
+  public String getContinent() {
+    return continent;
   }
 
   @Override

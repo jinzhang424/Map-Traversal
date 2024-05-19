@@ -21,7 +21,9 @@ public class CountryGraph {
 
     for (String country : countries) {
       countryDetails = country.split(",");
-      nameToNodeMap.put(countryDetails[0], new CountryNode(countryDetails[0], countryDetails[2]));
+      nameToNodeMap.put(
+          countryDetails[0],
+          new CountryNode(countryDetails[0], countryDetails[1], countryDetails[2]));
     }
   }
 
