@@ -42,6 +42,9 @@ public class MapEngine {
         MessageCli.INVALID_COUNTRY.printMessage(countryInput);
       }
     }
+
+    MessageCli.COUNTRY_INFO.printMessage(
+        countryNode.getCountry(), countryNode.getContinent(), countryNode.getTaxFee());
   }
 
   /** this method is invoked when the user run the command route. */
