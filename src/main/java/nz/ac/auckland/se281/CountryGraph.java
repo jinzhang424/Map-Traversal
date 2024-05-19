@@ -43,4 +43,12 @@ public class CountryGraph {
       riskMap.put(nameToNodeMap.get(adjacentCountry[0]), adjacentCountryNodes);
     }
   }
+
+  public Map<String, CountryNode> getNameToNodeMap() {
+    return nameToNodeMap;
+  }
+
+  public Map<CountryNode, ArrayList<CountryNode>> getRiskMap() {
+    return riskMap;
+  }
 }
