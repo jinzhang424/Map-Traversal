@@ -51,4 +51,13 @@ public class CountryGraph {
   public Map<CountryNode, ArrayList<CountryNode>> getRiskMap() {
     return riskMap;
   }
+
+  public CountryNode getCountryNode(String countryName) throws MapNotFoundException {
+
+    if (nameToNodeMap.get(countryName) == null) {
+      throw new MapNotFoundException();
+    } else {
+      return nameToNodeMap.get(countryName);
+    }
+  }
 }
