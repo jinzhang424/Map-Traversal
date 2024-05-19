@@ -24,7 +24,24 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
-    // add code here
+
+    String userInput = null;
+    CountryNode countryNode = null;
+    String countryInput = null;
+
+    MessageCli.INSERT_COUNTRY.printMessage();
+
+    while (countryNode == null) {
+
+      userInput = Utils.scanner.nextLine();
+      countryInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
+
+      try {
+        countryNode = countryGraph.getCountryNode(countryInput);
+      } catch (MapNotFoundException e) {
+        MessageCli.INVALID_COUNTRY.printMessage(countryInput);
+      }
+    }
   }
 
   /** this method is invoked when the user run the command route. */
