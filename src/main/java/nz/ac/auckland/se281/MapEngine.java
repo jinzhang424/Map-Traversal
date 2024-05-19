@@ -56,5 +56,15 @@ public class MapEngine {
   }
 
   /** this method is invoked when the user run the command route. */
-  public void showRoute() {}
+  public void showRoute() {
+
+    CountryNode startingNode = null;
+    CountryNode endingNode = null;
+
+    MessageCli.INSERT_SOURCE.printMessage();
+    startingNode = getCountryNodeFromUserInput();
+
+    MessageCli.INSERT_DESTINATION.printMessage();
+    endingNode = getCountryNodeFromUserInput();
+  }
 }
