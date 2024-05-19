@@ -25,11 +25,20 @@ public class MapEngine {
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
 
-    String userInput = null;
     CountryNode countryNode = null;
-    String countryInput = null;
 
     MessageCli.INSERT_COUNTRY.printMessage();
+    countryNode = getCountryNodeFromUserInput();
+
+    MessageCli.COUNTRY_INFO.printMessage(
+        countryNode.getCountry(), countryNode.getContinent(), countryNode.getTaxFee());
+  }
+
+  public CountryNode getCountryNodeFromUserInput() {
+
+    CountryNode countryNode = null;
+    String countryInput = null;
+    String userInput = null;
 
     while (countryNode == null) {
 
@@ -37,14 +46,13 @@ public class MapEngine {
       countryInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
 
       try {
-        countryNode = countryGraph.getCountryNode(countryInput);
+        return countryNode = countryGraph.getCountryNode(countryInput);
       } catch (MapNotFoundException e) {
         MessageCli.INVALID_COUNTRY.printMessage(countryInput);
       }
     }
 
-    MessageCli.COUNTRY_INFO.printMessage(
-        countryNode.getCountry(), countryNode.getContinent(), countryNode.getTaxFee());
+    return countryNode;
   }
 
   /** this method is invoked when the user run the command route. */
