@@ -54,7 +54,7 @@ public class CountryGraph {
 
   public CountryNode getCountryNode(String countryName) throws MapNotFoundException {
 
-    if (nameToNodeMap.get(countryName) == null) {
+    if (!nameToNodeMap.containsKey(countryName)) {
       throw new MapNotFoundException();
     } else {
       return nameToNodeMap.get(countryName);
