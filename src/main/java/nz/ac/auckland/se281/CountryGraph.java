@@ -80,7 +80,7 @@ public class CountryGraph {
       for (CountryNode n : riskMap.get(node)) {
 
         // If the visited list doesn't contain the node
-        if (!visited.contains(n)) {
+        if (!visited.contains(n) && !visited.contains(destination)) {
           visited.add(n); // Adds the node to the visited list
           queue.add(n); // Adds the node the the queue list
         }
