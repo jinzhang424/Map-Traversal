@@ -60,11 +60,31 @@ public class MapEngine {
 
     CountryNode startingNode = null;
     CountryNode endingNode = null;
+    List<CountryNode> visited = null;
+    List<CountryNode> shortestRoute = null;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startingNode = getCountryNodeFromUserInput();
 
     MessageCli.INSERT_DESTINATION.printMessage();
     endingNode = getCountryNodeFromUserInput();
+
+    visited = countryGraph.breathFirstTraversal(startingNode, endingNode);
+    shortestRoute = countryGraph.FindShortestRoute(visited);
+
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("[");
+    for (int i = shortestRoute.size() - 1; i >= 0; i--) {
+      if (i > 0) {
+        sb.append(shortestRoute.get(i).getCountry() + ", ");
+      } else {
+        sb.append(shortestRoute.get(i).getCountry());
+      }
+    }
+
+    sb.append("]");
+
+    MessageCli.ROUTE_INFO.printMessage(sb.toString());
   }
 }
