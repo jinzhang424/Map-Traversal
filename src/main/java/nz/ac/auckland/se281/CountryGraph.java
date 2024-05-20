@@ -2,10 +2,12 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 public class CountryGraph {
 
@@ -87,5 +89,31 @@ public class CountryGraph {
       }
     }
     return visited;
+  }
+
+  public Set<CountryNode> FindShortestRoute(List<CountryNode> visited) {
+
+    Set<CountryNode> shortestRoute = new HashSet<>();
+
+    CountryNode currentNode = visited.get(visited.size() - 1);
+
+    // While the shortestRoute set doesn't contain the starting node
+    while (!shortestRoute.contains(visited.get(0))) {
+
+      // Looking through the visited node list until we find one that matches a node in the current
+      // node's adjacency list starting from the top of the list
+      for (int i = visited.size() - 1; i >= 0; i++) {
+
+        // Checks if a node in visited is in the adjacency of the currentNode we're searching for
+        // and add it if it is
+        if (riskMap.get(currentNode).contains(visited.get(i))) {
+          shortestRoute.add(visited.get(i));
+          currentNode = visited.get(i);
+          break;
+        }
+      }
+    }
+
+    return shortestRoute;
   }
 }
