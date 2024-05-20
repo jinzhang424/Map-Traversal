@@ -95,13 +95,14 @@ public class CountryGraph {
 
     Set<CountryNode> shortestRoute = new LinkedHashSet<>();
     CountryNode currentNode = visited.get(visited.size() - 1);
+    CountryNode routeStartNode = visited.get(0);
 
-    // While the shortestRoute set doesn't contain the starting node
-    while (!shortestRoute.contains(visited.get(0))) {
+    // While the shortestRoute set doesn't contain the routeStartNode
+    while (!shortestRoute.contains(routeStartNode)) {
 
       // Looking through the visited node list until we find one that matches a node in the current
       // node's adjacency list starting from the top of the list
-      for (int i = visited.size() - 1; i >= 0; i++) {
+      for (int i = 0; i < visited.size(); i++) {
 
         // Checks if a node in visited is in the adjacency of the currentNode we're searching for
         // and add it if it is
