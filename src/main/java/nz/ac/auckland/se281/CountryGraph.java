@@ -2,7 +2,7 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -93,8 +93,7 @@ public class CountryGraph {
 
   public Set<CountryNode> FindShortestRoute(List<CountryNode> visited) {
 
-    Set<CountryNode> shortestRoute = new HashSet<>();
-
+    Set<CountryNode> shortestRoute = new LinkedHashSet<>();
     CountryNode currentNode = visited.get(visited.size() - 1);
 
     // While the shortestRoute set doesn't contain the starting node
