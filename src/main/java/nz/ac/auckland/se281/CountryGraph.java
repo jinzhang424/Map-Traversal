@@ -2,12 +2,10 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 public class CountryGraph {
 
@@ -91,11 +89,13 @@ public class CountryGraph {
     return visited;
   }
 
-  public Set<CountryNode> FindShortestRoute(List<CountryNode> visited) {
+  public List<CountryNode> FindShortestRoute(List<CountryNode> visited) {
 
-    Set<CountryNode> shortestRoute = new LinkedHashSet<>();
+    List<CountryNode> shortestRoute = new ArrayList<>();
     CountryNode currentNode = visited.get(visited.size() - 1);
     CountryNode routeStartNode = visited.get(0);
+
+    shortestRoute.add(currentNode);
 
     // While the shortestRoute set doesn't contain the routeStartNode
     while (!shortestRoute.contains(routeStartNode)) {
