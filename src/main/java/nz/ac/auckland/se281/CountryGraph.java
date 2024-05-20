@@ -2,8 +2,10 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class CountryGraph {
 
@@ -61,5 +63,29 @@ public class CountryGraph {
     } else {
       return nameToNodeMap.get(countryName);
     }
+  }
+
+  public List<CountryNode> breathFirstTraversal(CountryNode root, CountryNode destination) {
+
+    List<CountryNode> visited = new ArrayList<>();
+    Queue<CountryNode> queue = new LinkedList<>();
+
+    queue.add(root);
+    visited.add(root);
+
+    while (!queue.isEmpty() && !visited.contains(destination)) {
+      CountryNode node = queue.poll(); // retrieves and removes the head element
+
+      // Visitng the adjacent nodes first
+      for (CountryNode n : riskMap.get(node)) {
+
+        // If the visited list doesn't contain the node
+        if (!visited.contains(n)) {
+          visited.add(n); // Adds the node to the visited list
+          queue.add(n); // Adds the node the the queue list
+        }
+      }
+    }
+    return visited;
   }
 }
