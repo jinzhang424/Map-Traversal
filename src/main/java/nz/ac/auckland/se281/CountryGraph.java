@@ -9,16 +9,23 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+/** This class is used for generating maps and has methods to find the path between 2 nodes. */
 public class CountryGraph {
 
   private Map<String, CountryNode> nameToNodeMap;
   private Map<CountryNode, ArrayList<CountryNode>> riskMap;
 
+  /** Constructor of CountryGraph and intializes the fields, nameToNodeMap and riskMap. */
   public CountryGraph() {
     nameToNodeMap = new HashMap<>();
     riskMap = new HashMap<>();
   }
 
+  /**
+   * Creates a HashMap that maps the name of a country as a string to a particular CountryNode.
+   *
+   * @param countries
+   */
   public void generateNameToNodeMap(List<String> countries) {
 
     String[] countryDetails; // Stores the details of a country
@@ -34,6 +41,11 @@ public class CountryGraph {
     }
   }
 
+  /**
+   * Uses a hashmap to map CountryNodes to their adjacent nodes stored as an array list.
+   *
+   * @param adjacencies List of countries followed by their adjacent countries
+   */
   public void generateRiskMap(List<String> adjacencies) {
 
     String[] adjacentCountry; // Stores the country name and name of adjacent countries
@@ -53,14 +65,32 @@ public class CountryGraph {
     }
   }
 
+  /**
+   * Getter for the nameToNodeMap HashMap.
+   *
+   * @return the nameToNodeMap HashMap
+   */
   public Map<String, CountryNode> getNameToNodeMap() {
     return nameToNodeMap;
   }
 
+  /**
+   * Getter for the riskMap HashMap.
+   *
+   * @return the riskMap HashMap
+   */
   public Map<CountryNode, ArrayList<CountryNode>> getRiskMap() {
     return riskMap;
   }
 
+  /**
+   * Get's a country's node based on the string of the country.
+   *
+   * @param countryName the name of a country as a string
+   * @return the CountryNode of a particular country
+   * @throws MapNotFoundException throws an exception when the parameter countryName is not found in
+   *     the keys of nameToNodeMap
+   */
   public CountryNode getCountryNode(String countryName) throws MapNotFoundException {
 
     // Checks if the countryName input is valid
@@ -71,6 +101,15 @@ public class CountryGraph {
     }
   }
 
+  /**
+   * Uses the breath first search algorithm to search for the destination CountryNode starting from
+   * the root node using adjacency lists of CountryNodes.
+   *
+   * @param root the CountryNode of which we begin the search
+   * @param destination the CountryNode we use to reach
+   * @return A list of CountryNodes we've come across while searching for the destination
+   *     CountryNode
+   */
   public List<CountryNode> findRootToDestinationNodeBFS(CountryNode root, CountryNode destination) {
 
     List<CountryNode> visited = new ArrayList<>();
@@ -97,6 +136,22 @@ public class CountryGraph {
     return visited;
   }
 
+  /**
+   * This method finds the shortest path between the first and last CountryNode in the parameter
+   * visited using the adjacency list of CountryNodes in the list assuming that the path exists.
+   *
+   * <p>It does this by designating a currentNode (starting with the bottom CountryNode in the
+   * visited list) and scans the visited list from top to bottom and checks if a CountryNode is in
+   * the adjacent list of the currentNode. If it is add it to the shortestRoute list change the
+   * currentNode to the node we recently added to the list and immediately being searching the
+   * adjacent list of the current node. Do this until the first node in the visited list is added
+   * tothe shortestRoute list.
+   *
+   * @param visited a list of CountryNodes that have been visited on the way to finding the last
+   *     CountryNodes
+   * @return the shortest path from the top node in the visited list to the bottom node in the
+   *     visited list in a REVERSED order
+   */
   public List<CountryNode> findShortestRoute(List<CountryNode> visited) {
 
     List<CountryNode> shortestRoute = new ArrayList<>();
@@ -125,6 +180,14 @@ public class CountryGraph {
     return shortestRoute;
   }
 
+  /**
+   * Finds the continents given a list of CountryNodes using a HashSet to avoid repeating
+   * continents. (Typically used for lists that contains the shortest path between 2 CountryNodes)
+   *
+   * @param shortestRoute a list of CountryNodes (typically the shortest path between 2
+   *     CountryNodes)
+   * @return an array of the continents in a REVERSED order
+   */
   public Object[] findContinentsOfRoute(List<CountryNode> shortestRoute) {
 
     Set<String> continents = new LinkedHashSet<>();
