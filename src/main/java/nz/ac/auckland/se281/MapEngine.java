@@ -32,7 +32,7 @@ public class MapEngine {
    */
   public void showInfoCountry() {
 
-    CountryNode countryNode = null;
+    CountryNode countryNode;
 
     MessageCli.INSERT_COUNTRY.printMessage();
     countryNode = getCountryNodeFromUserInput();
@@ -50,8 +50,8 @@ public class MapEngine {
   public CountryNode getCountryNodeFromUserInput() {
 
     CountryNode countryNode = null;
-    String countryInput = null;
-    String userInput = null;
+    String countryInput;
+    String userInput;
 
     // Continuously asks for the user's input while their input is invalid
     while (countryNode == null) {
@@ -75,14 +75,14 @@ public class MapEngine {
    */
   public void showRoute() {
 
-    CountryNode startingNode = null;
-    CountryNode endingNode = null;
-    List<CountryNode> visited = null;
-    List<CountryNode> shortestRoute = null;
-    Object[] continentsOfShortestRoute = null;
+    CountryNode startingNode;
+    CountryNode endingNode;
+    List<CountryNode> visited;
+    List<CountryNode> shortestRoute;
+    Object[] continentsOfShortestRoute;
     int taxFeeOfRoute = 0;
-    StringBuilder routeStringBuilder = null;
-    StringBuilder continentsStringBuilder = null;
+    StringBuilder routeStringBuilder;
+    StringBuilder continentsStringBuilder;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startingNode = getCountryNodeFromUserInput();
