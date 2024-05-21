@@ -2,17 +2,21 @@ package nz.ac.auckland.se281;
 
 import java.util.List;
 
-/** This class is the main entry point. */
+/**
+ * This class contains all the functions of the map engine and can prints information about
+ * countries and information on travel routes
+ */
 public class MapEngine {
 
   private CountryGraph countryGraph = new CountryGraph();
 
+  /** Constructor of the MapEngine class */
   public MapEngine() {
 
-    loadMap(); // keep this mehtod invocation
+    loadMap();
   }
 
-  /** invoked one time only when constracting the MapEngine class. */
+  /** This method intializes the map with all the details of countries */
   private void loadMap() {
 
     List<String> countries = Utils.readCountries();
@@ -22,7 +26,10 @@ public class MapEngine {
     countryGraph.generateRiskMap(adjacencies);
   }
 
-  /** this method is invoked when the user run the command info-country. */
+  /**
+   * This method shows the info (Country name, continent, tax fee of travelling there) of a country
+   * based on the user input
+   */
   public void showInfoCountry() {
 
     CountryNode countryNode = null;
@@ -34,6 +41,12 @@ public class MapEngine {
         countryNode.getCountry(), countryNode.getContinent(), countryNode.getTaxFee());
   }
 
+  /**
+   * This method gets a country node by asking the user for an input (a country's name) and
+   * continues to ask the user for input until they enter a valid input
+   *
+   * @return the node of a country
+   */
   public CountryNode getCountryNodeFromUserInput() {
 
     CountryNode countryNode = null;
@@ -56,7 +69,10 @@ public class MapEngine {
     return countryNode;
   }
 
-  /** this method is invoked when the user run the command route. */
+  /**
+   * This method prints the shortest route from one country to another, the continents they will
+   * visit and the total tax fee of their travels
+   */
   public void showRoute() {
 
     CountryNode startingNode = null;
@@ -86,6 +102,7 @@ public class MapEngine {
       routeStringBuilder = new StringBuilder();
       routeStringBuilder.append("[");
       for (int i = shortestRoute.size() - 1; i >= 0; i--) {
+        // Prevents appending a comma and space when appending the last country
         if (i > 0) {
           routeStringBuilder.append(shortestRoute.get(i).getCountry() + ", ");
         } else {
@@ -111,7 +128,6 @@ public class MapEngine {
         continentsStringBuilder.append(continentsOfShortestRoute[j]);
       }
     }
-
     continentsStringBuilder.append("]");
     MessageCli.CONTINENT_INFO.printMessage(continentsStringBuilder.toString());
 
