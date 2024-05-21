@@ -91,7 +91,7 @@ public class MapEngine {
     endingNode = getCountryNodeFromUserInput();
 
     // Finding the shortestRoute and continents of the shortest route
-    visited = countryGraph.findRootToDestinationNodeBFS(startingNode, endingNode);
+    visited = countryGraph.findRootToDestinationPath(startingNode, endingNode);
     shortestRoute = countryGraph.findShortestRoute(visited);
     continentsOfShortestRoute = countryGraph.findContinentsOfRoute(shortestRoute);
 

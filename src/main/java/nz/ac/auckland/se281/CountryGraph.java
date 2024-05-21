@@ -111,7 +111,7 @@ public class CountryGraph {
    * @return A list of CountryNodes we've come across while searching for the destination
    *     CountryNode
    */
-  public List<CountryNode> findRootToDestinationNodeBFS(CountryNode root, CountryNode destination) {
+  public List<CountryNode> findRootToDestinationPath(CountryNode root, CountryNode destination) {
 
     List<CountryNode> visited = new ArrayList<>();
     Queue<CountryNode> queue = new LinkedList<>();
