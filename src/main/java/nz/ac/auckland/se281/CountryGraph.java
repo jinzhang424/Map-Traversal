@@ -21,7 +21,7 @@ public class CountryGraph {
 
   public void generateNameToNodeMap(List<String> countries) {
 
-    String[] countryDetails = null; // Stores the details of a country
+    String[] countryDetails; // Stores the details of a country
 
     // Goes through all the countries and creates a node for each country
     for (String country : countries) {
@@ -36,8 +36,8 @@ public class CountryGraph {
 
   public void generateRiskMap(List<String> adjacencies) {
 
-    String[] adjacentCountry = null; // Stores the country name and name of adjacent countries
-    ArrayList<CountryNode> adjacentCountryNodes = null;
+    String[] adjacentCountry; // Stores the country name and name of adjacent countries
+    ArrayList<CountryNode> adjacentCountryNodes;
 
     // Mapping a node to a list of adjacent nodes
     for (String c : adjacencies) {
