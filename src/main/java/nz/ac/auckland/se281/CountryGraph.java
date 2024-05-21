@@ -23,8 +23,11 @@ public class CountryGraph {
 
     String[] countryDetails = null; // Stores the details of a country
 
+    // Goes through all the countries and creates a node for each country
     for (String country : countries) {
+
       countryDetails = country.split(",");
+
       nameToNodeMap.put(
           countryDetails[0],
           new CountryNode(countryDetails[0], countryDetails[1], countryDetails[2]));
@@ -60,6 +63,7 @@ public class CountryGraph {
 
   public CountryNode getCountryNode(String countryName) throws MapNotFoundException {
 
+    // Checks if the countryName input is valid
     if (!nameToNodeMap.containsKey(countryName)) {
       throw new MapNotFoundException();
     } else {
@@ -75,13 +79,15 @@ public class CountryGraph {
     queue.add(root);
     visited.add(root);
 
+    // Keeps looping while the queue isn't empty and the visited list doesn't contain the root node
     while (!queue.isEmpty() && !visited.contains(destination)) {
       CountryNode node = queue.poll(); // retrieves and removes the head element
 
       // Visitng the adjacent nodes first
       for (CountryNode n : riskMap.get(node)) {
 
-        // If the visited list doesn't contain the node
+        // If the visited list doesn't contain the current node and doesn't contain the root
+        // node
         if (!visited.contains(n) && !visited.contains(destination)) {
           visited.add(n); // Adds the node to the visited list
           queue.add(n); // Adds the node the the queue list
@@ -99,15 +105,15 @@ public class CountryGraph {
 
     shortestRoute.add(currentNode);
 
-    // While the shortestRoute set doesn't contain the routeStartNode
+    // Keeps looping while the shortestRoute list doesn't contain the routeStartNode
     while (!shortestRoute.contains(routeStartNode)) {
 
       // Looking through the visited node list until we find one that matches a node in the current
       // node's adjacency list starting from the top of the list
       for (int i = 0; i < visited.size(); i++) {
 
-        // Checks if a node in visited is in the adjacency of the currentNode we're searching for
-        // and add it if it is
+        // Checks if a node in visited is in the adjacency of the currentNode and if it is add it to
+        // the list
         if (riskMap.get(currentNode).contains(visited.get(i))) {
           shortestRoute.add(visited.get(i));
           currentNode = visited.get(i);
@@ -119,11 +125,12 @@ public class CountryGraph {
     return shortestRoute;
   }
 
-  public Object[] findContinentsOfRoute(List<CountryNode> visited) {
+  public Object[] findContinentsOfRoute(List<CountryNode> shortestRoute) {
 
     Set<String> continents = new LinkedHashSet<>();
 
-    for (CountryNode countryNode : visited) {
+    // Adds continents of the nodes in the visited list
+    for (CountryNode countryNode : shortestRoute) {
       continents.add(countryNode.getContinent());
     }
 

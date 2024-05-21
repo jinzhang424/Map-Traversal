@@ -40,6 +40,7 @@ public class MapEngine {
     String countryInput = null;
     String userInput = null;
 
+    // Continuously asks for the user's input while their input is invalid
     while (countryNode == null) {
 
       userInput = Utils.scanner.nextLine();
@@ -64,6 +65,8 @@ public class MapEngine {
     List<CountryNode> shortestRoute = null;
     Object[] continentsOfShortestRoute = null;
     int taxFeeOfRoute = 0;
+    StringBuilder routeStringBuilder = null;
+    StringBuilder continentsStringBuilder = null;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startingNode = getCountryNodeFromUserInput();
@@ -71,41 +74,46 @@ public class MapEngine {
     MessageCli.INSERT_DESTINATION.printMessage();
     endingNode = getCountryNodeFromUserInput();
 
+    // Finding the shortestRoute and continents of the shortest route
     visited = countryGraph.breathFirstTraversal(startingNode, endingNode);
     shortestRoute = countryGraph.FindShortestRoute(visited);
     continentsOfShortestRoute = countryGraph.findContinentsOfRoute(shortestRoute);
 
     // Printing Route info
-    if (shortestRoute.size() > 1) {
-      StringBuilder sb = new StringBuilder();
-      sb.append("[");
+    if (shortestRoute.size()
+        > 1) { // Checking if the shortestRoute size is 1 (indicates that the start and destination
+      // is the same)
+      routeStringBuilder = new StringBuilder();
+      routeStringBuilder.append("[");
       for (int i = shortestRoute.size() - 1; i >= 0; i--) {
         if (i > 0) {
-          sb.append(shortestRoute.get(i).getCountry() + ", ");
+          routeStringBuilder.append(shortestRoute.get(i).getCountry() + ", ");
         } else {
-          sb.append(shortestRoute.get(i).getCountry());
+          routeStringBuilder.append(shortestRoute.get(i).getCountry());
         }
         // Getting the tax fee of the route
         if (i < shortestRoute.size() - 1) {
           taxFeeOfRoute += Integer.valueOf(shortestRoute.get(i).getTaxFee());
         }
       }
-      sb.append("]");
-      MessageCli.ROUTE_INFO.printMessage(sb.toString());
+      routeStringBuilder.append("]");
+      MessageCli.ROUTE_INFO.printMessage(routeStringBuilder.toString());
     }
 
     // Printing Continent info
-    StringBuilder continents = new StringBuilder();
-    continents.append("[");
+    continentsStringBuilder = new StringBuilder();
+    continentsStringBuilder.append("[");
+
     for (int j = continentsOfShortestRoute.length - 1; j >= 0; j--) {
       if (j > 0) {
-        continents.append(continentsOfShortestRoute[j] + ", ");
+        continentsStringBuilder.append(continentsOfShortestRoute[j] + ", ");
       } else {
-        continents.append(continentsOfShortestRoute[j]);
+        continentsStringBuilder.append(continentsOfShortestRoute[j]);
       }
     }
-    continents.append("]");
-    MessageCli.CONTINENT_INFO.printMessage(continents.toString());
+
+    continentsStringBuilder.append("]");
+    MessageCli.CONTINENT_INFO.printMessage(continentsStringBuilder.toString());
 
     // Printing tax info
     if (taxFeeOfRoute == 0) {
