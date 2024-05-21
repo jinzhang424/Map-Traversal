@@ -82,8 +82,12 @@ public class CountryNode {
     CountryNode other = (CountryNode) obj;
 
     if (country == null) {
-      if (other.country != null) return false;
-    } else if (!country.equals(other.country)) return false;
+      if (other.country != null) {
+        return false;
+      }
+    } else if (!country.equals(other.country)) {
+      return false;
+    }
     return true;
   }
 }
