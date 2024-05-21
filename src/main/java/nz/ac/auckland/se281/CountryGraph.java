@@ -24,7 +24,8 @@ public class CountryGraph {
   /**
    * Creates a HashMap that maps the name of a country as a string to a particular CountryNode.
    *
-   * @param countries
+   * @param countries an arbitrary list of countries where each element has the country's name,
+   *     continent and tax fee for entry seperated by commas
    */
   public void generateNameToNodeMap(List<String> countries) {
 
@@ -91,11 +92,11 @@ public class CountryGraph {
    * @throws MapNotFoundException throws an exception when the parameter countryName is not found in
    *     the keys of nameToNodeMap
    */
-  public CountryNode getCountryNode(String countryName) throws MapNotFoundException {
+  public CountryNode getCountryNode(String countryName) throws CountryNotFoundException {
 
     // Checks if the countryName input is valid
     if (!nameToNodeMap.containsKey(countryName)) {
-      throw new MapNotFoundException();
+      throw new CountryNotFoundException();
     } else {
       return nameToNodeMap.get(countryName);
     }

@@ -61,7 +61,7 @@ public class MapEngine {
 
       try {
         countryNode = countryGraph.getCountryNode(countryInput);
-      } catch (MapNotFoundException e) {
+      } catch (CountryNotFoundException e) {
         MessageCli.INVALID_COUNTRY.printMessage(countryInput);
       }
     }
