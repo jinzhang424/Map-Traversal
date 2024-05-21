@@ -106,6 +106,10 @@ public class MapEngine {
     MessageCli.CONTINENT_INFO.printMessage(continents.toString());
 
     // Printing tax info
-    MessageCli.TAX_INFO.printMessage(String.valueOf(taxFeeOfRoute));
+    if (taxFeeOfRoute == 0) {
+      MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
+    } else {
+      MessageCli.TAX_INFO.printMessage(String.valueOf(taxFeeOfRoute));
+    }
   }
 }
