@@ -4,19 +4,19 @@ import java.util.List;
 
 /**
  * This class contains all the functions of the map engine and can prints information about
- * countries and information on travel routes
+ * countries and information on travel routes.
  */
 public class MapEngine {
 
   private CountryGraph countryGraph = new CountryGraph();
 
-  /** Constructor of the MapEngine class */
+  /** Constructor of the MapEngine class. */
   public MapEngine() {
 
     loadMap();
   }
 
-  /** This method intializes the map with all the details of countries */
+  /** This method intializes the map with all the details of countries. */
   private void loadMap() {
 
     List<String> countries = Utils.readCountries();
@@ -28,7 +28,7 @@ public class MapEngine {
 
   /**
    * This method shows the info (Country name, continent, tax fee of travelling there) of a country
-   * based on the user input
+   * based on the user input.
    */
   public void showInfoCountry() {
 
@@ -43,7 +43,7 @@ public class MapEngine {
 
   /**
    * This method gets a country node by asking the user for an input (a country's name) and
-   * continues to ask the user for input until they enter a valid input
+   * continues to ask the user for input until they enter a valid input.
    *
    * @return the node of a country
    */
@@ -71,7 +71,7 @@ public class MapEngine {
 
   /**
    * This method prints the shortest route from one country to another, the continents they will
-   * visit and the total tax fee of their travels
+   * visit and the total tax fee of their travels.
    */
   public void showRoute() {
 
