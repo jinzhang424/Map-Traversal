@@ -76,21 +76,23 @@ public class MapEngine {
     continentsOfShortestRoute = countryGraph.findContinentsOfRoute(shortestRoute);
 
     // Printing Route info
-    StringBuilder sb = new StringBuilder();
-    sb.append("[");
-    for (int i = shortestRoute.size() - 1; i >= 0; i--) {
-      if (i > 0) {
-        sb.append(shortestRoute.get(i).getCountry() + ", ");
-      } else {
-        sb.append(shortestRoute.get(i).getCountry());
+    if (shortestRoute.size() > 1) {
+      StringBuilder sb = new StringBuilder();
+      sb.append("[");
+      for (int i = shortestRoute.size() - 1; i >= 0; i--) {
+        if (i > 0) {
+          sb.append(shortestRoute.get(i).getCountry() + ", ");
+        } else {
+          sb.append(shortestRoute.get(i).getCountry());
+        }
+        // Getting the tax fee of the route
+        if (i < shortestRoute.size() - 1) {
+          taxFeeOfRoute += Integer.valueOf(shortestRoute.get(i).getTaxFee());
+        }
       }
-      // Getting the tax fee of the route
-      if (i < shortestRoute.size() - 1) {
-        taxFeeOfRoute += Integer.valueOf(shortestRoute.get(i).getTaxFee());
-      }
+      sb.append("]");
+      MessageCli.ROUTE_INFO.printMessage(sb.toString());
     }
-    sb.append("]");
-    MessageCli.ROUTE_INFO.printMessage(sb.toString());
 
     // Printing Continent info
     StringBuilder continents = new StringBuilder();
