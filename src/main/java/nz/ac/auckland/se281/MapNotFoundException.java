@@ -1,8 +1,3 @@
 package nz.ac.auckland.se281;
 
-public class MapNotFoundException extends RuntimeException {
-
-  public MapNotFoundException() {
-    super();
-  }
-}
+public class MapNotFoundException extends RuntimeException {}

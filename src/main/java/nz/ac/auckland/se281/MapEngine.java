@@ -60,7 +60,7 @@ public class MapEngine {
       countryInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
 
       try {
-        return countryNode = countryGraph.getCountryNode(countryInput);
+        countryNode = countryGraph.getCountryNode(countryInput);
       } catch (MapNotFoundException e) {
         MessageCli.INVALID_COUNTRY.printMessage(countryInput);
       }
