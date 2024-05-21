@@ -91,8 +91,8 @@ public class MapEngine {
     endingNode = getCountryNodeFromUserInput();
 
     // Finding the shortestRoute and continents of the shortest route
-    visited = countryGraph.breathFirstTraversal(startingNode, endingNode);
-    shortestRoute = countryGraph.FindShortestRoute(visited);
+    visited = countryGraph.findRootToDestinationNodeBFS(startingNode, endingNode);
+    shortestRoute = countryGraph.findShortestRoute(visited);
     continentsOfShortestRoute = countryGraph.findContinentsOfRoute(shortestRoute);
 
     // Printing Route info

@@ -71,7 +71,7 @@ public class CountryGraph {
     }
   }
 
-  public List<CountryNode> breathFirstTraversal(CountryNode root, CountryNode destination) {
+  public List<CountryNode> findRootToDestinationNodeBFS(CountryNode root, CountryNode destination) {
 
     List<CountryNode> visited = new ArrayList<>();
     Queue<CountryNode> queue = new LinkedList<>();
@@ -97,7 +97,7 @@ public class CountryGraph {
     return visited;
   }
 
-  public List<CountryNode> FindShortestRoute(List<CountryNode> visited) {
+  public List<CountryNode> findShortestRoute(List<CountryNode> visited) {
 
     List<CountryNode> shortestRoute = new ArrayList<>();
     CountryNode currentNode = visited.get(visited.size() - 1);
