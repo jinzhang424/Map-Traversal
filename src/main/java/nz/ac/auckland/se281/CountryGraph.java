@@ -2,12 +2,12 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.LinkedHashSet;
 
 public class CountryGraph {
 
@@ -119,14 +119,14 @@ public class CountryGraph {
     return shortestRoute;
   }
 
-  public String[] findContinentsOfRoute(List<CountryNode> visited) {
+  public Object[] findContinentsOfRoute(List<CountryNode> visited) {
 
     Set<String> continents = new LinkedHashSet<>();
 
-    for (CountryNode countryNode: visited) {
+    for (CountryNode countryNode : visited) {
       continents.add(countryNode.getContinent());
     }
 
-    return (String[]) continents.toArray();
+    return continents.toArray();
   }
 }
