@@ -63,6 +63,7 @@ public class MapEngine {
     List<CountryNode> visited = null;
     List<CountryNode> shortestRoute = null;
     Object[] continentsOfShortestRoute = null;
+    int taxFeeOfRoute = 0;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startingNode = getCountryNodeFromUserInput();
@@ -83,6 +84,10 @@ public class MapEngine {
       } else {
         sb.append(shortestRoute.get(i).getCountry());
       }
+      // Getting the tax fee of the route
+      if (i < shortestRoute.size() - 1) {
+        taxFeeOfRoute += Integer.valueOf(shortestRoute.get(i).getTaxFee());
+      }
     }
     sb.append("]");
     MessageCli.ROUTE_INFO.printMessage(sb.toString());
@@ -90,14 +95,17 @@ public class MapEngine {
     // Printing Continent info
     StringBuilder continents = new StringBuilder();
     continents.append("[");
-    for (int i = continentsOfShortestRoute.length - 1; i >= 0; i--) {
-      if (i > 0) {
-        continents.append(continentsOfShortestRoute[i] + ", ");
+    for (int j = continentsOfShortestRoute.length - 1; j >= 0; j--) {
+      if (j > 0) {
+        continents.append(continentsOfShortestRoute[j] + ", ");
       } else {
-        continents.append(continentsOfShortestRoute[i]);
+        continents.append(continentsOfShortestRoute[j]);
       }
     }
     continents.append("]");
     MessageCli.CONTINENT_INFO.printMessage(continents.toString());
+
+    // Printing tax info
+    MessageCli.TAX_INFO.printMessage(String.valueOf(taxFeeOfRoute));
   }
 }
