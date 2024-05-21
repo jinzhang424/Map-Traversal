@@ -2,16 +2,16 @@ package nz.ac.auckland.se281;
 
 /**
  * This method is used to create nodes for countries and contains basic information of the country
- * (name, continent and tax fee for entry)
+ * (name, continent and tax fee for entry).
  */
 public class CountryNode {
 
-  private String country = null;
-  private String taxFee = null;
-  private String continent = null;
+  private String country;
+  private String taxFee;
+  private String continent;
 
   /**
-   * Constructor of the CountryNode class that intialises the fields, country taxFee, continent
+   * Constructor of the CountryNode class that intialises the fields, country taxFee, continent.
    *
    * @param country a country's name
    * @param continent the continent of the country
@@ -24,7 +24,7 @@ public class CountryNode {
   }
 
   /**
-   * Getter for the field, country
+   * Getter for the field, country.
    *
    * @return the country's name
    */
@@ -33,7 +33,7 @@ public class CountryNode {
   }
 
   /**
-   * Getter for the field, taxFee
+   * Getter for the field, taxFee.
    *
    * @return the tax fee of the country
    */
@@ -42,7 +42,7 @@ public class CountryNode {
   }
 
   /**
-   * Getter for the continent
+   * Getter for the continent.
    *
    * @return
    */
@@ -51,7 +51,7 @@ public class CountryNode {
   }
 
   @Override
-  /** Overridng the hashCode method */
+  /** Overridng the hashCode method. */
   public int hashCode() {
 
     final int prime = 31;
@@ -64,7 +64,7 @@ public class CountryNode {
   }
 
   @Override
-  /** Overriding the equals method to check compare the country's nodes for equality */
+  /** Overriding the equals method to check compare the country's nodes for equality. */
   public boolean equals(Object obj) {
 
     if (this == obj) return true;
