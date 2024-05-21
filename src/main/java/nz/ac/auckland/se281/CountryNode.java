@@ -42,16 +42,16 @@ public class CountryNode {
   }
 
   /**
-   * Getter for the continent.
+   * Getter for the field, continent.
    *
-   * @return
+   * @return the continent of a country
    */
   public String getContinent() {
     return continent;
   }
 
-  @Override
   /** Overridng the hashCode method. */
+  @Override
   public int hashCode() {
 
     final int prime = 31;
@@ -63,8 +63,8 @@ public class CountryNode {
     return result;
   }
 
-  @Override
   /** Overriding the equals method to check compare the country's nodes for equality. */
+  @Override
   public boolean equals(Object obj) {
 
     if (this == obj) return true;
