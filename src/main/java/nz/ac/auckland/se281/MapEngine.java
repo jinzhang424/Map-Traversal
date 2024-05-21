@@ -62,6 +62,7 @@ public class MapEngine {
     CountryNode endingNode = null;
     List<CountryNode> visited = null;
     List<CountryNode> shortestRoute = null;
+    Object[] continentsOfShortestRoute = null;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startingNode = getCountryNodeFromUserInput();
@@ -71,9 +72,10 @@ public class MapEngine {
 
     visited = countryGraph.breathFirstTraversal(startingNode, endingNode);
     shortestRoute = countryGraph.FindShortestRoute(visited);
+    continentsOfShortestRoute = countryGraph.findContinentsOfRoute(shortestRoute);
 
+    // Printing Route info
     StringBuilder sb = new StringBuilder();
-
     sb.append("[");
     for (int i = shortestRoute.size() - 1; i >= 0; i--) {
       if (i > 0) {
@@ -82,9 +84,20 @@ public class MapEngine {
         sb.append(shortestRoute.get(i).getCountry());
       }
     }
-
     sb.append("]");
-
     MessageCli.ROUTE_INFO.printMessage(sb.toString());
+
+    // Printing Continent info
+    StringBuilder continents = new StringBuilder();
+    continents.append("[");
+    for (int i = continentsOfShortestRoute.length - 1; i >= 0; i--) {
+      if (i > 0) {
+        continents.append(continentsOfShortestRoute[i] + ", ");
+      } else {
+        continents.append(continentsOfShortestRoute[i]);
+      }
+    }
+    continents.append("]");
+    MessageCli.CONTINENT_INFO.printMessage(continents.toString());
   }
 }
